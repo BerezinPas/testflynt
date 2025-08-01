@@ -1,0 +1,31 @@
+ <section class="email-confirmation">
+    <div class="container">
+      <h1>Подтвердите ваш email</h1>
+      
+      {% if _GET.resent == '1' %}
+        <div class="alert success">
+          ✅ Письмо отправлено на <strong>{{ _GET.email }}</strong>
+        </div>
+      {% endif %}
+
+      {% if _GET.error == 'user_not_found' %}
+        <div class="alert error">
+          ❌ Пользователь не найден
+        </div>
+      {% elseif _GET.error == 'send_failed' %}
+        <div class="alert error">
+          ❌ Ошибка отправки. Попробуйте позже.
+        </div>
+      {% endif %}
+
+      <p>Письмо с подтверждением отправлено на <strong>{{ _GET.email }}</strong>.</p>
+      <p>Не пришло? Проверьте спам или отправьте повторно:</p>
+
+      <form method="post">
+        <input type="hidden" name="email" value="{{ _GET.email }}">
+        <button type="submit" name="resend_verification" class="resend-button">
+          Отправить письмо снова
+        </button>
+      </form>
+    </div>
+  </section>

@@ -1,0 +1,8 @@
+<section class="password-recovery">
+  <div class="password-recovery__wrap">
+    {% include '/assets/images/SnapID.svg' %}
+    <div class="password-recovery__title">{{ title }}</div>
+    <div class="password-recovery__text">{{ text }}</div>
+    {{ function('do_shortcode', '[wppb-recover-password]') }}
+  </div>
+</section>
