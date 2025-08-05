@@ -3,21 +3,21 @@ name: Build Project
 on:
   push:
     branches: [main]
-  workflow_dispatch: # Позволяет запускать вручную
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: webdevops/php-node:8.2-alpine
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
+      - name: Install Composer dependencies
+        run: |
+          composer install --no-dev --no-interaction --optimize-autoloader
 
-      - name: Install dependencies
+      - name: Install Node.js dependencies
         run: npm ci
 
       - name: Build project
