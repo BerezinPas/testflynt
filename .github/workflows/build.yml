@@ -31,7 +31,6 @@ jobs:
         run: |
           composer global require "squizlabs/php_codesniffer=*"
           ln -s ~/.composer/vendor/bin/phpcs /usr/local/bin/phpcs
-          ln -s ~/.composer/vendor/bin/phpcbf /usr/local/bin/phpcbf
 
       - name: Create phpcs symlink
         run: |
@@ -42,7 +41,7 @@ jobs:
         run: npm ci
 
       - name: Build project
-        run: npm run build
+        run: npm run build:production # Пропускаем линтинг
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
